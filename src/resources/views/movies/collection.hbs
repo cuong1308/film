@@ -1,0 +1,42 @@
+<section class="movieCollection">
+  <div class="container" style="width: 100%">
+    <div class="movieCollection-container">
+      <div class="collection">
+      <div class="collection-container">
+        <h1 class="collection-title">COLLECTION</h1>
+        <div class="collection-list">
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="filmTrend">
+      <div class="filmTrend-container">
+        <h2 class="filmTrend-title">TOP THỊNH HÀNH</h2>
+        <ul class="filmTrend-list">
+
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const collectionApp = () => {
+  const api_key = "3a26bb11393110f07519c6cd79b223c8";
+  var id = new URL(window.location.href).searchParams.get("id");
+  const apiCollection = `https://api.themoviedb.org/3/collection/${id}?api_key=${api_key}&language=vi`;
+  const img = (poster_path) => `https://image.tmdb.org/t/p/w500/${poster_path}`;
+
+  const getMovieCollection = (callback) => {
+  fetch(apiCollection)
+    .then((response) => {
+      return response.json();
+    })
+    .then(callback);
+  };
+  console.log(apiCollection)
+}
+</script>

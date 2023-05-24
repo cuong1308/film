@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Enriqueta&family=Inter:wght@300;400;500;700;800&display=swap');
+
+.wrapper {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1240px !important;
+    margin: 0 auto;
+    // padding: 0 15px;
+    position: relative;
+}
+
+body {
+    background: $background-color !important;
+    font-weight: 400;
+    width: 100%;
+    color: white !important;
+    font-family: 'Inter', sans-serif;
+ 
+}
+
+.button {
+    // padding: 15px; 
+    background-color: #d9534f;
+    border: 1px solid #d43f3a;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 8px 10px;
+    margin: 0 5px;
+    border-radius: 0;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.error {
+    display: block;
+    font-size: 11px;
+    margin: 3px 15px;
+    color: #ff9658;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+}
+
+label {
+    font-weight: 500;
+}
+
+.position {
+    position: absolute;
+    z-index: 15;
+    top: 50%;
+    bottom: 50%;
+}
+
+.fs-25 {
+    font-size: 25px;
+}
+
+.left-15 {
+    left: 15px;
+}
+
+.right-20 {
+    right: 20px;
+}
+
+.padding-0 {
+    padding: 0;
+}
+.bg-green {
+    background: rgba($color: #4bd662, $alpha: 0.8);
+}
+.bg-brown {
+    background: rgba(255, 130, 70, 0.5)
+}
+.disabled {
+    pointer-events: none;
+    color :rgba(170, 166, 165, 0.5) ;
+}
+.hide {
+    display: none;
+}
+.flex {
+    display: flex;
+}

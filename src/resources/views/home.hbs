@@ -1,0 +1,327 @@
+<section class="filmBanner " >
+              <div class="filmBanner-container">
+                <ul class="filmBanner-list">
+                  
+                </ul>
+              </div>
+</section>
+
+<section class="film-main reveal">
+  <div class="container" style="width: 100%">
+    <div class="film-main-container">
+      <div class="filmUpdate">
+      <div class="filmUpdate-container">
+        <h1 class="filmUpdate-title">PHIM MỚI CẬP NHẬT</h1>
+        <div class="film-list">
+
+        {{#each movies}}
+        <div class="film-item">
+          <a href="/movies/detail?id={{this.id}}">
+                  <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{this.poster_path}}">
+                  <div class="infor">
+                     <h5 class="filmUpdate-name">{{this.title}}</h5>
+                  </div>
+           </a>       
+        </div>
+        {{/each}}
+
+        </div>
+
+      </div>
+    </div>
+    <div class="filmTrend">
+      <div class="filmTrend-container">
+        <h2 class="filmTrend-title">TOP THỊNH HÀNH</h2>
+        <ul class="filmTrend-list">
+
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="tv reveal">
+  <!-- <div class="container"> -->
+  <div class="tv-container">
+    <div class="tv-title">
+      CHƯƠNG TRÌNH TRUYỀN HÌNH PHỔ BIẾN
+    </div>
+    <ul class="tv-list">
+
+    </ul>
+  </div>
+  <!-- </div> -->
+</section>
+
+<section class="upcoming reveal">
+  <!-- <div class="container"> -->
+  <div class="upcoming-container">
+    <div class="upcoming-title">
+      PHIM SẮP RA MẮT
+    </div>
+    <ul class="upcoming-list">
+
+    </ul>
+  </div>
+  <!-- </div> -->
+</section>
+
+<script>
+const initApp = () => {
+     {{!-- const showFilm =async ()=>{
+      var response = await   fetch('/movies?page=1');
+      var data = await response.json();
+      var dom = document.querySelector(".film-list");
+       var html = "";
+        data.data.forEach(e=>{
+            html+=`
+            
+                <div class="film-item">
+                  <img src="https://www.themoviedb.org/t/p/w220_and_h330_face${e.poster_path}">
+                  <div class="infor">
+                     <h5 class="filmUpdate-name">${e.title}</h5>
+                  </div>
+                </div>
+                        `;
+        });
+        dom.innerHTML = html;
+   }
+   showFilm(); --}}
+
+   const showTrend =async ()=>{
+      //var key_category = url_category ? url_category : "movie";
+      var response = await   fetch('/trends?page=1');
+      var data = await response.json();
+      var dom = document.querySelector(".filmTrend-list");
+      var html = "";
+        data.data.forEach((e, index)=>{
+           if (index > 7 ) return;
+           else {
+            html+=`
+            <a href="/movies/detail?id=${e.id}">            
+                <div class="filmTrend-item">
+                  <div class="filmTrend-image">
+                    <img src="https://www.themoviedb.org/t/p/w220_and_h330_face${e.poster_path}">
+                  </div>
+                  <div class="filmTrend-infor">
+                    <h3 class="filmTrend-name">${e.media_type === "tv" ? e.name : e.title}</h3>
+                    <h3 class="filmTrend-popularity">${e.popularity}</h3>
+                    <h3 class="filmTrend-vote">${e.vote_average}/10</h3>
+                    <h3 class="filmTrend-${e.media_type}">${e.media_type === "tv" ? "TV Show": "Movies"}</h3>
+                  </div>
+                </div>
+            </a>    
+                        `;
+           }
+        });
+        dom.innerHTML = html;
+   }
+   showTrend();
+
+
+const key_api = "3a26bb11393110f07519c6cd79b223c8";
+var page;
+const apiTvpopular = `https://api.themoviedb.org/3/tv/popular?api_key=${key_api}&language=vi&page=1`;
+const apiNow = `https://api.themoviedb.org/3/discover/movie?api_key=${key_api}&language=vi&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
+const img = (poster_path) => `https://image.tmdb.org/t/p/original${poster_path}`;
+
+
+  const getTvPopular = (callback) => {
+  fetch(apiTvpopular)
+    .then((response) => {
+      return response.json();
+    })
+    .then(callback);
+};
+
+function displayPopulartv() {
+  const tvList = document.querySelector(".tv-list");
+  getTvPopular((data) => {
+    data = data.results;
+
+    for (var i = 0; i < 18; i++) {
+      const li = document.createElement("li");
+      li.setAttribute("class", "tv-item");
+      {
+        data[i].backdrop_path
+          ? li.setAttribute("class", "tv-item")
+          : li.setAttribute("class", "tv-item-none");
+      }
+      tvList.appendChild(li);
+      li.innerHTML = `
+        <a href="/tv/detail?id=${data[i].id}">
+          <div class="tv-image">
+            <img src=${img(data[i].backdrop_path)} loading="auto" ></img>
+          </div>
+          <div class="tv-item-name">
+            ${data[i].name}
+          </div>
+        </a>
+      `;
+    }
+  });
+}
+displayPopulartv();
+
+const apiUpcoming = `https://api.themoviedb.org/3/movie/upcoming?api_key=${key_api}&language=vi&page=1`;
+
+const getUpcoming = (callback) => {
+  fetch(apiUpcoming)
+    .then((response) => {
+      return response.json();
+    })
+    .then(callback);
+};
+
+function displayUpcoming() {
+  const tvList = document.querySelector(".upcoming-list");
+  getUpcoming((data) => {
+    data = data.results;
+
+    for (var i = 0; i <12; i++) {
+
+      const li = document.createElement("li");
+      li.setAttribute("class", "upcoming-item");
+      {
+        data[i].backdrop_path
+          ? li.setAttribute("class", "upcoming-item")
+          : li.setAttribute("class", "upcoming-item-none");
+      }
+      tvList.appendChild(li);
+      li.innerHTML = `
+        <a href="/movies/detail?id=${data[i].id}">
+          <div class="upcoming-image">
+            <img loading="auto" src=${img(data[i].backdrop_path)} ></img>
+          </div>
+          <div class="upcoming-item-name">
+            ${data[i].title}
+          </div>
+          <div class="upcoming-release">Sắp ra mắt</div>
+        </a>
+      `;
+    }
+  });
+}
+displayUpcoming();
+
+async function displayPosterShow() {
+    const filmHotList = document.querySelector(".filmBanner-list");
+    const respon = await fetch(apiNow);
+    const data = await respon.json();
+    const result = data.results;
+    for (var i = 0; i < 10; i++) {
+      var li = document.createElement("li");
+
+      li.setAttribute("class", "filmBanner-item");
+      filmHotList.appendChild(li);
+      li.innerHTML = `
+      <a href="/movies/detail?id=${result[i].id}">
+          <div class="filmBanner-image" loading="auto">
+          <img src=${img(result[i].backdrop_path)} > </img>
+          <h5 class="filmBanner-name">${result[i].title}</h5>
+         </div>
+      </a>
+      `;
+    }
+    result.map((item, index) => {});
+    slickSlideBanner();
+}
+
+const slickSlideBanner = () => {
+    $(".filmBanner-list").slick({
+      centerMode: true,
+      centerPadding: "0px",
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: true,
+      focusOnSelect: true,
+      autoplaySpeed: 2000,
+      autoplay: true,
+      prevArrow:
+        '<div class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+      nextArrow:
+        '<div class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: "40",
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: "40px",
+            slidesToShow: 1,
+          },
+        },
+      ],
+    });
+  };
+  const slickSlide = () => {
+    $(".filmHot-list").slick({
+      infinite: true,
+      speed: 1000,
+      slidesToShow: 5,
+      slidesToScroll: 4,
+      autoplaySpeed: 1000,
+      autoplay: true,
+      prevArrow:
+        '<div class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+      nextArrow:
+        '<div class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>',
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    });
+  };
+
+  displayPosterShow();
+}
+
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+  
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+  
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+window.addEventListener("scroll", reveal);
+
+document.addEventListener("DOMContentLoaded", initApp);
+</script>

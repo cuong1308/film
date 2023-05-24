@@ -1,0 +1,20 @@
+<div class="mt-4">
+  <h3 style="width: 70%; margin:50px 0 0 22% ;">Thông tin cá nhân</h3>
+
+  <form class="row g-3" style="width: 80%; margin:50px 0 0 22% ;">
+    <div class="col-5" >
+        {{#if user}}
+    <div class=" mb-3">
+      <label>Tên người dùng:</label> {{user.name}}
+      
+    </div>
+    <div class=" mb-3">
+      <label>Email:</label> {{user.email}}
+    </div>
+    {{/if}}
+  </div>
+  <div class="col-10 d-grid" style="margin-left:5px ;">
+    <a href="/users/edit"></a><button class="btn btn-primary" type="submit">Chỉnh sửa</button>
+  </div>
+  </form>
+</div>

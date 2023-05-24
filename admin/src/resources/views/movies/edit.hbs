@@ -1,0 +1,80 @@
+<div class="mt-4">
+  <h3 style="width: 80%; margin:50px 0 0 22% ;">Chỉnh sửa phim</h3>
+  <form method="POST" action="/movies/{{movie._id}}?_method=PUT" style="width: 80%; margin:50px 0 0 22% ;">
+    <div class="col-5">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="id"
+          placeholder="ID"
+          name="id"
+          value="{{movie.id}}"
+        />
+        <label for="id">ID</label>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Tên phim"
+          name="title"
+          value="{{movie.title}}"
+        />
+        <label for="title">Tên phim</label>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="original_title"
+          placeholder="Tên gốc phim"
+          name="original_title"
+          value="{{movie.original_title}}"
+        />
+        <label for="title">Tên gốc phim</label>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="form-group">
+        <label for="release_date">Năm sản xuất:</label>
+        <select
+          class="year-select"
+          id="year-select"
+          name="release_date"
+          aria-label="Default select example"
+        >
+          <option value="{{movie.release_date}}">-- Chọn năm --</option>
+        </select>
+
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          placeholder="Nội dung"
+          id="overview"
+          name="overview"
+          style="height: 200px"
+        ></textarea>
+        <label for="overview">Nội dung</label>
+      </div>
+    </div>
+    <div class="col-10 d-grid" style="margin-left:5px ;">
+      <button class="btn btn-primary" type="submit">Cập nhật</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const startYear = 1900; const endYear = new Date().getFullYear(); const
+  select= document.getElementById("year-select"); for (let year = endYear; year
+  >=startYear; year--) { const option = document.createElement("option");
+  option.value = year; option.text = year; select.add(option); }
+</script>

@@ -1,0 +1,213 @@
+.film-full {
+  &-container {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    margin-top: 20px;
+  }
+
+  .filmSort {
+    position: sticky;
+    top: 22px;
+    background: rgba(26, 26, 26, 0.5);
+    padding: 30px;
+    box-shadow: 1px -1px 7px 0px rgba(218, 150, 110, 0.966);
+    border-radius: 10px;
+
+    // max-height: 225px;
+    &-control {
+      // &-group {
+      //     // padding: 10px 10px;
+      // }
+
+      &-label {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgba(218, 150, 110, 0.979);
+      }
+
+      &-search {
+        margin-top: 20px;
+        width: 100%;
+        border-radius: 5px;
+        height: 45px;
+        padding: 0 10px;
+      }
+    }
+
+    &-genres {
+      margin-top: 30px;
+
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 10px;
+      }
+
+      &--tv,
+      &--movie {
+        &--item {
+          box-shadow: 1px -1px 7px 0px #797978;
+          padding: 8px;
+          border: 1px solid white;
+          border-radius: 10px;
+          font-size: 12px;
+          word-spacing: -4px;
+          text-transform: lowercase;
+        }
+      }
+    }
+  }
+
+  .filmStore {
+    &-item {
+      a {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      border: 1px solid rgb(218, 150, 110);
+      margin-bottom: 25px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(218 ,150 ,110 ,0.8);
+    }
+
+    &-info {
+      padding: 20px;
+    }
+
+    &-name {
+      font-size: 21px;
+      margin-bottom: 3px;
+      font-weight: bold;
+    }
+
+    &-image {
+      img {
+        width: 150px;
+        height: 225px;
+        object-fit: cover;
+      }
+    }
+
+    &-release {
+      font-size: 16px;
+      font-weight: 300;
+      color: #999;
+    }
+
+    &-review {
+      font-size: 16px;
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      /* number of lines to show */
+      line-clamp: 5;
+      -webkit-box-orient: vertical;
+      margin-top: 25px;
+    }
+  }
+}
+
+// boostrap
+.btn-submit {
+  margin-top: 15px !important;
+  border-radius: 8px;
+  width: 100%;
+  margin: auto;
+  font-weight: bold;
+  background: #da966e;
+}
+
+.form-control:focus {
+  border-color: rgba(218, 150, 110 ,0.8) !important;
+}
+
+select:focus > option:checked {
+  background: rgba(218, 150, 110 , 0.8) !important;
+}
+
+.paginate {
+  &-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filmSort-header,
+  .filmStore {
+    grid-column: 1/4;
+  }
+
+  .filmStore {
+    &-item {
+      max-height: 200px;
+    }
+
+    &-image {
+      max-height: 200px;
+
+      img {
+        max-height: 100%;
+        object-position: top;
+      }
+    }
+
+    &-review {
+      margin-top: 0 !important;
+    }
+
+    &-info {
+      padding: 0px !important;
+    }
+  }
+
+  .paginate {
+    &-list {
+      gap: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 374.98px) {
+  .film-full {
+    .filmStore {
+      &-info {
+        padding: 5px 2px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &-name {
+        font-size: 15px !important;
+      }
+
+      &-review {
+        font-size: 12px !important;
+        -webkit-line-clamp: 7 !important;
+      }
+
+      &-release {
+        font-size: 11px;
+      }
+
+      &-image {
+        img {
+          width: 120px;
+        }
+      }
+    }
+  }
+  .paginate {
+    &-list {
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+  }
+}

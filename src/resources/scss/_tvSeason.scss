@@ -1,0 +1,238 @@
+.tvSeason {
+  height: 100vh;
+
+  &-header {
+    position: relative;
+    // height: 100vh;
+    width: 100%;
+    box-shadow: 3px 6px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  &-bg {
+    position: relative;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    // background-position: center;
+    height: 680px;
+    width: 100%;
+    filter: brightness(0.2);
+  }
+
+  &-child {
+    display: flex;
+    gap: 60px;
+    margin: 0 150px;
+    position: absolute;
+
+    top: 18%;
+  }
+
+  &-infor {
+    max-width: 800px;
+  }
+
+  &-image {
+    filter: brightness(0.5);
+    position: relative;
+    width: 100%;
+    height: 693px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &-name {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px 0;
+  }
+
+  &-overview {
+    font-size: 18px;
+    line-height: calc(25 / 18);
+  }
+
+  &-poster {
+    img {
+      border-radius: 10px;
+      box-shadow: rgba(255, 203, 203, 0.22) 3px -5px 16px 17px;
+      width: 300px;
+    }
+  }
+
+  &-button {
+    cursor: pointer;
+    width: 160px;
+    text-align: center;
+    background: rgba(57, 157, 111, 0.5);
+    padding: 10px;
+    box-shadow: 6px 3px 8px rgba(239, 234, 234 ,0.22);
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: absolute;
+    // margin: 10px 50px;
+    // font-size: 30px;
+    &:hover {
+      background: rgba(57, 157, 111, 1);
+    }
+  }
+
+  //main
+
+  &-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 280px);
+
+    gap: 10px 20px;
+
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  &-episode {
+    position: relative;
+
+    &:nth-child(1) {
+      a {
+        display: flex;
+        gap: 25px;
+      }
+
+      margin: auto;
+      grid-column: 1/5;
+      margin-bottom: 30px;
+
+      .tvSeason-episode--infor {
+        width: 500px;
+      }
+
+      .tvSeason-episode--image {
+        width: 500px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .tvSeason-episode--title {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 10px;
+      }
+
+      .tvSeason-episode--overview {
+        background: transparent;
+        position: relative;
+        opacity: 1;
+        padding: 0;
+      }
+
+      .tvSeason-episode--title {
+        text-align: start;
+      }
+    }
+
+    &--title {
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+      margin: 5px;
+    }
+
+    &--overview {
+      cursor: pointer;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      border-radius: 8px;
+      padding: 10px 20px;
+
+      height: 160px;
+      background: rgba(0, 0, 0, 0.7);
+
+      transition: ease-in 0.4s;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      /* number of lines to show */
+      line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.8;
+    }
+
+    &--image {
+      box-shadow: rgba(181, 171, 171, 0.2) 4px 5px 6px 1px;
+      width: 280px;
+      border-radius: 8px;
+      img {
+        width: 100%;
+        border-radius: 8px;
+      }
+    }
+
+    &:hover &--overview:not(:nth-child(1)) {
+      opacity: 1;
+    }
+  }
+
+  &-other {
+    display: none;
+
+    &--arrow {
+      display: none-;
+      font-size: 30px;
+      text-align: center;
+      animation: slide1 1s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    &--list {
+      display: block;
+      display: flex;
+      gap: 45px;
+    }
+
+    &--image {
+      max-width: 200px;
+      border-radius: 8px;
+      cursor: pointer;
+      img {
+        border-radius: 8px;
+        max-width: 100%;
+      }
+    }
+    &--previous {
+      font-size: 25px;
+      padding: 15px 6px;
+      color: #da966e;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    &--infor {
+      text-align: center;
+    }
+  }
+}
+
+#main {
+  display: none;
+}
+
+// effect
+.arrow1 {
+  animation: slide1 1s ease-in-out infinite;
+  margin-left: 9px;
+}
+
+@keyframes slide1 {
+  0%,
+  100% {
+    transform: translate(0, -5px);
+  }
+
+  50% {
+    transform: translate(0, 0px);
+  }
+}
